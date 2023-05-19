@@ -48,7 +48,6 @@ bool solveSudoku(int mat[][9], int i, int j, int n)
 
 		return true;
 	}
-
 	// rec case
 	if (j == n)
 	{
@@ -60,7 +59,6 @@ bool solveSudoku(int mat[][9], int i, int j, int n)
 	{
 		return solveSudoku(mat, i, j + 1, n);
 	}
-
 	// cell to be filled
 	// try out all possibilites
 	for (int no = 1; no <= n; no++)
