@@ -5,24 +5,21 @@ int main()
 {
     int n, p, q;
     cin >> n;
-    int *arr = new int[n];
+    int arr[n];
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
     }
+    sort(arr, arr + n);
     cin >> p >> q;
     int m = q - p + 1;
-    int *a = new int[m];
+    int a[m];
     for (int i = 0; i < m; i++)
     {
         a[i] = p + i;
     }
-    int **b = new int *[m];
-    for (int i = 0; i < n; i++)
-    {
-        b[i] = new int[n];
-    }
-    int *minarr = new int[m];
+    int b[m][n];
+    int minarr[m];
     for (int i = 0; i < m; i++)
     {
         minarr[i] = INT_MAX;
@@ -31,7 +28,12 @@ int main()
     {
         for (int j = 0; j < n; j++)
         {
-            b[i][j] = (a[i] - arr[j] > 0) ? (a[i] - arr[j]) : (arr[j] - a[i]);
+            b[i][j] = abs(a[i] - arr[j]);
+            if (b[i][j] == 0)
+            {
+                minarr[i] = 0;
+                break;
+            }
             if (minarr[i] > b[i][j])
                 minarr[i] = b[i][j];
         }
