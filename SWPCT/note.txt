@@ -1,0 +1,290 @@
+#####Test1#############################################################
+
+/*
+// 숨은 그림을 의미하는 숫자가 2개인 숨은 그림을 찾는 코드
+
+#include <iostream>
+using namespace std;
+
+int N; // 풍경화의 크기
+int a[10 + 10][10 + 10]; // 풍경화
+int X1, X2; // 숨은 그림을 의미하는 2개의 숫자
+
+int di[8] = { -1,-1,0,1,1,1,0,-1 };
+int dj[8] = { 0,1,1,1,0,-1,-1,-1 };
+int Solve(void) {
+	int count = 0;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			if (a[i][j] != X1) continue;
+			for (int k = 0; k < 8; k++) {
+				int ni = i + di[k];
+				int nj = j + dj[k];
+				if (ni < 0 || ni >= N) continue;
+				if (nj < 0 || nj >= N) continue;
+				if (a[ni][nj] != X2) continue;
+				count++;
+			}
+		}
+	}
+	return count;
+}
+
+void InputData(void) {
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			cin >> a[i][j];
+		}
+	}
+	cin >> X1 >> X2;
+}
+
+int main(void) {
+	int ans;
+	InputData();
+	ans = Solve();
+	cout << ans;
+	return 0;
+}
+*/
+
+#include <iostream>
+using namespace std;
+
+int N; // 풍경화의 크기
+int a[10 + 10][10 + 10]; // 풍경화
+int X1, X2, X3; // 숨은 그림을 의미하는 3개의 숫자
+
+int di[8] = { -1,-1,0,1,1,1,0,-1 };
+int dj[8] = { 0,1,1,1,0,-1,-1,-1 };
+
+int Solve(void) {
+	int count = 0;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			if (a[i][j] != X1) continue;
+			for (int k = 0; k < 8; k++) {
+				int ni = i + di[k];
+				int nj = j + dj[k];
+				if (ni < 0 || ni >= N) continue;
+				if (nj < 0 || nj >= N) continue;
+				if (a[ni][nj] != X2) continue;
+				if (a[ni][nj] == X2) {
+					int ni1 = ni + di[k];
+					int nj1 = nj + dj[k];
+					if (ni1 < 0 || ni1 >= N) continue;
+					if (nj1 < 0 || nj1 >= N) continue;
+					if (a[ni1][nj1] != X3) continue;
+				}
+				count++;
+			}
+		}
+	}
+	return count;
+}
+
+void InputData(void) {
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			cin >> a[i][j];
+		}
+	}
+	cin >> X1 >> X2 >> X3;
+}
+
+int main(void) {
+	int ans = -1;
+	InputData(); // 입력
+
+	// 코드 작성
+	ans = Solve();
+
+
+	cout << ans; // 출력
+	return 0;
+}
+
+
+
+#####Test2#############################################################
+
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+int S, E1, E2;
+string s, e1, e2;
+int ans1, ans2;
+void InputData()
+{
+	cin >> S >> E1 >> E2;
+}
+
+int numOfFactors(int x) {
+	if (x % 2 == 0) {
+		return int(log2(x))+1;
+	}
+	int ret = 0;
+	for (int i = 1; i < int(x/2); i++) {
+		if (x % i == 0) ret++;
+	}
+	return ret+1;
+}
+
+void ConvertString() {
+	s = to_string(S);
+	e1 = to_string(E1);
+	e2 = to_string(E2);
+}
+
+int main()
+{
+	InputData();// 입력받는 부분
+
+	// 여기서부터 작성
+	ConvertString();
+	
+	if (strcmp(s, e1) == 0) ans1 = 1;
+	if (strcmp(s, e2) == 0) ans1 = 1;
+	
+	while (strcmp(s, e1) != 0) {
+		for (int i = 0; i < 4; i++) {
+			if (s[i] == e1[i]) continue;
+			do {
+				
+			}
+		}
+	}
+
+
+	cout << ans1 << '\n';// 출력하는 부분
+	cout << ans2 << '\n';
+	return 0;
+}
+
+2023 2225 2123
+
+3
+8
+
+
+######Test3##############################
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int N; // 이물질의 개수
+int K; // 장비 최대 사용가능 횟수
+int X[50000]; // 이물질의 위치
+int V = 0;
+int V_area[10] = {0};
+int max_X = 0;
+int min_X = 1000000000;
+int maxX_area[10] = {0};
+int minX_area[10];
+int X_area[50000];
+struct Area {
+	int s, e;
+} area[10];
+
+void InputData() {
+	cin >> N >> K;
+	for (int i = 0; i < N; i++) {
+		cin >> X[i];
+		max_X = max(max_X, X[i]);
+		min_X = min(min_X, X[i]);
+	}
+	sort(X, X+N);
+}
+int main() {
+
+	
+	InputData(); // 입력 받는 부분
+	// 여기서부터 작성
+	if (K > N) {
+		cout << 0 << endl;
+		return 0;
+	}
+	
+	for (int i = 0; i < K; i++) {
+		minX_area[i] = 1000000000;
+	}
+	
+	//int areaLength = (max_X - min_X)/K == 0 ? (max_X - min_X)/K : (max_X - min_X)/K+1;
+	int areaLength = (max_X - min_X)/K;
+	
+	for (int i = 0; i < K; i++) {
+		if (i == 0)
+			area[i].s = min_X;	
+		else
+			area[i].s = area[i-1].e + 1;
+		if (i == K-1)
+			area[i].e = max_X;
+		else
+			area[i].e = area[i].s + areaLength;
+	}
+	
+	for (int j = 0; j < K; j++) {
+		// int tmp = 0;
+		for (int i = 0; i < N; i++) {
+			if (X[i] < area[j].s || X[i] > area[j].e) continue;
+			maxX_area[j] = max(maxX_area[j], X[i]);
+			minX_area[j] = min(minX_area[j], X[i]);
+			// cout << j << " " << X[i] << " " << minX_area[j] << endl;
+		}
+		if (minX_area[j] == 0) {
+			V_area[j] = -1;
+		} else {
+			int pos = (maxX_area[j] + minX_area[j])/2;
+			V_area[j] = max(pos - minX_area[j], maxX_area[j] - pos);
+		}
+	}
+	
+	// for (int i = 0; i < K; i++) {
+	// 	cout << area[i].s << " " << area[i].e << " " << minX_area[i] << " " << maxX_area[i] << " " << V_area[i] << endl;
+	// }
+	
+	
+	int unused = 0;
+	bool unused_area[10];
+	for (int j = 0; j < K; j++) {
+		if (V_area[j] == -1) {
+			unused++;
+			unused_area[j] = true;
+		}
+		V = max(V, V_area[j]);
+	}
+	
+// 	bool more_area[10];
+// 	for (int j = 0; j < K; j++) {
+// 		if (V_area[j] == V) {
+// 			more_area[j] = true;
+// 		}
+// 	}
+	
+// 	while (unused > 0) {
+// 		for (int i = 0; i < K; i++) {
+// 			if (more_area[i]) {
+				
+// 			}
+// 		}
+// 	}
+	
+	
+	
+	cout << V << endl;// 출력하는 부분
+	return 0;
+}
+
+7 2
+20
+25
+18
+8
+10
+3
+1
+->5

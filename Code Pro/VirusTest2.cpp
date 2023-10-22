@@ -27,7 +27,7 @@ void InputData(void)
 
 void OutputData(void)
 {
-    cout << sol;
+    cout << sol << endl;
 }
 
 int Find(int start, int d)

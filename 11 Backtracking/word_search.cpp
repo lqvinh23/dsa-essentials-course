@@ -47,7 +47,7 @@ bool search(vector<vector<char>> &board, string word, int length, int row, int c
 
 int main()
 {
-    vector<vector<char>> board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'E', 'S', 'E', 'E'}};
+    vector<vector<char>> board = {{'S', 'E', 'S', 'E'}, {'S', 'F', 'C', 'S'}, {'E', 'S', 'E', 'E'}};
     string word = "ESE";
     int length = word.size();
     int m = board.size();

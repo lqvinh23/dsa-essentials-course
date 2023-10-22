@@ -30,7 +30,7 @@ int main()
 {
     int arr[6] = {10, 2, 4, 8, 6, 9};
     priority_queue<int, vector<int>, greater<int>> gquiz(
-        arr, arr + 5);
+        arr, arr + 6);
 
     cout << "Array: ";
     showArray(arr, 6);
