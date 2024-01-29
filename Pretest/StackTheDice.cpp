@@ -2,23 +2,26 @@
 using namespace std;
 
 int n;
-int x[100005];
-int ans;
+int d[1005] = {0};
+int ans = 0;
 
 int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
-        cin >> x[i];
+        cin >> d[i];
     }
-
-    sort(x, x+n);
+    sort(d, d+n);
     int i = 0;
     while (i < n) {
         ans++;
-        i = i + x[i];
+        int sum = 0;
+        do {
+            sum = sum + 1;
+            i++;
+        }
+        while (sum <= d[i]);
     }
 
     cout << ans;
-
     return 0;
 }
